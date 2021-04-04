@@ -3,6 +3,10 @@ from datetime import datetime
 from pandas import read_csv
 
 # READ INVENTORY OF PRODUCTS
+def to_usd(my_price):
+    return f"${my_price:,.2f}"
+
+
 
 products_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "products.csv")
 products_df = read_csv(products_filepath)
@@ -35,9 +39,9 @@ for p in selected_products:
     print("SELECTED PRODUCT: " + p["name"] + "   " + '${:.2f}'.format(p["price"]))
 
 print("---------")
-print(f"SUBTOTAL: {subtotal:,.2f}")
-print(f"TAX: {(subtotal * 0.0875):.2f}")
-print(f"TOTAL: {((subtotal * 0.0875) + subtotal):.2f}")
+print(f"SUBTOTAL: {to_usd(subtotal)}")
+print(f"TAX: {to_usd(subtotal * 0.0875)}")
+print(f"TOTAL: {to_usd((subtotal * 0.0875) + subtotal)}")
 print("---------")
 print("THANK YOU! PLEASE COME AGAIN SOON!")
 print("---------")
