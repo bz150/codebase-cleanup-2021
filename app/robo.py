@@ -6,6 +6,8 @@ import requests
 from pandas import DataFrame
 import plotly.express as px
 
+from app.__init__ import to_usd
+
 load_dotenv()
 API_KEY = os.environ.get("ALPHAVANTAGE_API_KEY")
 
@@ -45,10 +47,10 @@ if __name__ == "__main__":
     
     # DISPLAY RESULTS
     
-    print("LATEST CLOSING PRICE: ", records[0]["close"])
-    print("LATEST CLOSING PRICE: ", df.iloc[0]["close"])
-    print("RECENT HIGH: ", df["high"].max())
-    print("RECENT LOW: ", df["low"].min())
+    print("LATEST CLOSING PRICE: ", to_usd(records[0]["close"]))
+    print("LATEST CLOSING PRICE: ", to_usd(df.iloc[0]["close"]))
+    print("RECENT HIGH: ", to_usd(df["high"].max()))
+    print("RECENT LOW: ", to_usd(df["low"].min()))
     
     # EXPORT PRICES TO CSV
     
