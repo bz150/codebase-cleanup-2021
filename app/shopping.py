@@ -17,6 +17,13 @@ def lookup_product(product_id, all_products):
     else:
         return None
 
+def post_tax(subtotal):
+    """
+    Params:
+        subtotal (num), the subtotal to which tax is added
+    """
+    tax = subtotal * 0.0875
+    return tax
 
 # PREVENT ALL THE APP CODE FROM BEING IMPORTED
 # BUT MAKE EVERYTHING RUN BY COMMAND LINE
@@ -47,37 +54,37 @@ if __name__ == "__main__":
     checkout_at = datetime.now()
 
     subtotal = sum([float(p["price"]) for p in selected_products])
-
+    tax = post_tax(subtotal)
     # PRINT RECEIPT
 
     print("---------")
-    print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%M-%d %H:%m:%S")))
+    print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%m-%d %H:%M:%S")))
     print("---------")
     for p in selected_products:
-        print("SELECTED PRODUCT: " + p["name"] + "   " + '${:.2f}'.format(p["price"]))
+        print("SELECTED PRODUCT: " + p["name"] + "   " + to_usd(p["price"]))
 
     print("---------")
     print(f"SUBTOTAL: {to_usd(subtotal)}")
-    print(f"TAX: {to_usd(subtotal * 0.0875)}")
-    print(f"TOTAL: {to_usd((subtotal * 0.0875) + subtotal)}")
+    print(f"TAX: {to_usd(tax)}")
+    print(f"TOTAL: {to_usd(tax + subtotal)}")
     print("---------")
     print("THANK YOU! PLEASE COME AGAIN SOON!")
     print("---------")
 
     # WRITE RECEIPT TO FILE
 
-    receipt_id = checkout_at.strftime('%Y-%M-%d-%H-%m-%S')
+    receipt_id = checkout_at.strftime('%Y-%m-%d %H:%M:%S')
     receipt_filepath = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{receipt_id}.txt")
 
     with open(receipt_filepath, "w") as receipt_file:
         receipt_file.write("------------------------------------------")
         for p in selected_products:
-            receipt_file.write("\nSELECTED PRODUCT: " + p["name"] + "   " + '${:.0f}'.format(p["price"]))
+            receipt_file.write("\nSELECTED PRODUCT: " + p["name"] + "   " + to_usd(p["price"]))
 
         receipt_file.write("\n---------")
-        receipt_file.write(f"\nSUBTOTAL: {subtotal}")
-        receipt_file.write(f"\nTAX: {subtotal * 0.875}")
-        receipt_file.write(f"\nTOTAL: {((subtotal * 0.875) + subtotal)}")
+        receipt_file.write(f"\nSUBTOTAL: {to_usd(subtotal)}")
+        receipt_file.write(f"\nTAX: {to_usd(tax)}")
+        receipt_file.write(f"\nTOTAL: {to_usd(tax + subtotal)}")
         receipt_file.write("\n---------")
         receipt_file.write("\nTHANK YOU! PLEASE COME AGAIN SOON!")
         receipt_file.write("\n---------")

@@ -12,11 +12,6 @@ def test_to_usd():
 
 
 
-
-
-
-
-
 # consider making this a fixture
 mock_products_filepath = os.path.join(os.path.dirname(__file__),"mock_data","mock_products.csv")
 mock_products_df = read_csv(mock_products_filepath)
