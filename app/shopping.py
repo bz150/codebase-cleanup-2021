@@ -9,7 +9,7 @@ def lookup_product(product_id, all_products):
     """
     Params:
         product_id (str)
-        all_products (list of dict) with id, name, department, aisle, and price attributes
+        all_products (list of dict) with 'id', 'name', 'department', 'aisle', and 'price' attributes
     """
     matching_products = [p for p in all_products if str(p["id"]) == str(product_id)]
     if any(matching_products):

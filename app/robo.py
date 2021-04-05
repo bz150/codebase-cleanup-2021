@@ -9,7 +9,6 @@ import plotly.express as px
 from app.__init__ import to_usd
 
 load_dotenv()
-API_KEY = os.environ.get("ALPHAVANTAGE_API_KEY")
 
 API_KEY = os.getenv("ALPHAVANTAGE_API_KEY", default="demo")
 
@@ -19,7 +18,6 @@ def get_response(symbol):
     return json.loads(response.text)
 
 if __name__ == "__main__":
-    pass
 
     # FETCH DATA
 
@@ -47,7 +45,7 @@ if __name__ == "__main__":
     
     # DISPLAY RESULTS
     
-    print("LATEST CLOSING PRICE: ", to_usd(records[0]["close"]))
+    #print("LATEST CLOSING PRICE: ", to_usd(records[0]["close"]))
     print("LATEST CLOSING PRICE: ", to_usd(df.iloc[0]["close"]))
     print("RECENT HIGH: ", to_usd(df["high"].max()))
     print("RECENT LOW: ", to_usd(df["low"].min()))

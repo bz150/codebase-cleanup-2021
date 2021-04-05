@@ -2,14 +2,14 @@
 
 # TODO: import some code
 
-from app.shopping import to_usd, lookup_product
+from app.shopping import lookup_product
+from app.__init__ import to_usd
 from pandas import read_csv
 import os
 
 
 def test_to_usd():
     assert to_usd(9.5) == "$9.50"
-
 
 
 # consider making this a fixture
