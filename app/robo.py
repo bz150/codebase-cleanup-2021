@@ -17,6 +17,7 @@ def get_response(symbol):
     return json.loads(response.text)
 
 if __name__ == "__main__":
+    pass
 
     # FETCH DATA
 
