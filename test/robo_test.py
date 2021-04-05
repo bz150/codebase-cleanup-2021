@@ -6,7 +6,7 @@
 import os
 import pytest
 
-from app.my_script import get_response
+from app.robo import get_response
 
 # expect default environment variable setting of "CI=true" on Travis CI
 # see: https://docs.travis-ci.com/user/environment-variables/#default-environment-variables

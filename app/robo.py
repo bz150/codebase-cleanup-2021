@@ -7,25 +7,24 @@ from pandas import DataFrame
 import plotly.express as px
 
 load_dotenv()
+API_KEY = os.environ.get("ALPHAVANTAGE_API_KEY")
 
-API_KEY = os.getenv("ALPHAVANTAGE_API_KEY", default="abc123")
+API_KEY = os.getenv("ALPHAVANTAGE_API_KEY", default="demo")
 
-def get_response(stock_symbol):
+def get_response(symbol):
     url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={API_KEY}"
     response = requests.get(url) # issues an HTTP request
     return json.loads(response.text)
 
 if __name__ == "__main__":
-    pass
 
     # FETCH DATA
 
     symbol = input("Please input a stock symbol (e.g. 'MSFT'): ")
-    parsed_response = get_response(symbol) 
+    parsed_response = get_response(symbol)
     #request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={API_KEY}"
     #response = requests.get(request_url)
     #parsed_response = json.loads(response.text)
-            
     
     # PROCESS DATA
     
