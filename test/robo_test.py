@@ -2,6 +2,7 @@
 # TODO: import some code
 
 # TODO: test the code
+# instructions (Prof. Rossetti's Github): https://github.com/prof-rossetti/intro-to-python/blob/master/notes/devtools/travis-ci.md
 
 import os
 import pytest
